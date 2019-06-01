@@ -1,0 +1,62 @@
+Express 프레임워크 응용하기 - express - session 
+
+express - session 은 Express 프레임워크에서 세션을 관리하기 위해 필요한 미들웨어이다.
+
+express-session 을 통해 로그인 및 로그아웃을 구현해보도록 하자.
+
+사용 예제
+
+var session = require('express-session');
+
+app.use(session({
+    secret: '@#@$MYSIGN#@$#$',
+    resave: false,
+    saveUninitialized: true
+}));
+
+-secret : 쿠키를 임의로 변조하는 것을 방지하기 위한 값이다. 이 값을 통하여 세션을 암호화 하여 저장한다.
+
+-resave : 세션을 언제나 저장할 지 (변경되지 않아도) 정하는 값이다. express-session
+documentation 에서는 이 값을 false로 하는것을 권장하고 필요에 따라 true로 설정한다.
+
+-saveUninitialized : 세션이 저장되기 전에 uninitialized 상태로 미리 만들어서 저장한다.
+
+
+세션 초기 설정 (initialzation)
+app.get('/'. function(req, res){
+    sess = req.session;
+});
+
+간단하게 라우터 콜백함수 안에서 req.session 으로 세션에 접근 할 수 있다.
+
+세션 변수 설정
+app.get('/'. function(req, res){
+    sess = req.session;
+    sess.username = "yeoandante"
+});
+
+따로 키를 추가해줄 필요 없이 sess.[키 이름] = 값 으로 세션 변수를 설정 할 수 있다.
+
+세션 변수 사용
+
+app.get('/', function(req, res){
+    sess = req.session;
+    console.log(sess.username);
+});
+
+간단하게 사용 할 수 있다.
+
+세션 제거
+req.session.destroy(function(err){
+    // cannot access session here
+});
+
+세션을 제거 할 땐 (로그아웃) 위와 같이 한다.
+destroy() 메소드의 콜백함수에서는 세션에 접근 할 수 없다는 점을 명심해야한다.
+
+
+Express.js 를 사용해보면서 Node.js 와 Express.js 웹 프레임워크에 대한 기초를 다져보았다.
+
+로그인 로그아웃 기능을 넣어서 로그인시 Welcome , 로그아웃시에는 Plz login 이 나오도록 해보았다.
+
+강좌에서 사용된 코드는 https://github.com/velopert/express-tutorial 에서 확인 할 수 있다.

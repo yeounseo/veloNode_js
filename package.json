@@ -1,0 +1,26 @@
+{
+  "name": "velonode_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeounseo/veloNode_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeounseo/veloNode_js/issues"
+  },
+  "homepage": "https://github.com/yeounseo/veloNode_js#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.1",
+    "body-parser": "~1.14.2",
+    "express-session": "~1.13.0"
+  }
+}
